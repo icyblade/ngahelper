@@ -1,2 +1,2 @@
-# ngahelper
-something useful about NGA
+# NGAHelper
+Something useful about NGA
