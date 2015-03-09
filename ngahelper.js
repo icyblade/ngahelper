@@ -5,7 +5,8 @@
 // @description  Something useful about NGA
 // @author       Icyblade
 // @grant        none
-// @include        http://bbs.ngacn.cc/*
+// @include      http://bbs.ngacn.cc/*
+// @include      http://bbs.nga.cn/*
 // ==/UserScript==
 
 // 干掉兽人图片
