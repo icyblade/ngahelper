@@ -18,3 +18,8 @@ document.getElementById("toppedtopic").style.height="320px"
 
 // 干掉底部版权信息
 document.getElementsByClassName("cpinfo")[0].remove()
+
+// 干掉底部快速发帖
+document.getElementById("fast_post_c").remove()
+var count = document.getElementsByTagName("a").length
+document.getElementsByTagName("a")[count-1].remove()
