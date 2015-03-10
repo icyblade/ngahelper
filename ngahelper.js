@@ -10,7 +10,8 @@
 // ==/UserScript==
 
 // 干掉兽人图片
-document.getElementById("mainmenu").style.margin="0px"
+// document.getElementById("mainmenu").style.margin="0px"
+document.getElementById("custombg").remove()
 
 // 版头高度增高
 document.getElementById("toppedtopic").style.height="320px"
