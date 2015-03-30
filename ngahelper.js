@@ -25,7 +25,15 @@ var count = document.getElementsByTagName("a").length
 document.getElementsByTagName("a")[count-1].remove()
 
 // 干掉审核字样
+<<<<<<< HEAD
 var red = document.querySelectorAll("[title=\"待审核\"]")
 for(i = 0; i < red.length; i++){
 	red[i].parentNode.removeChild(red[i])
+=======
+var red_font = document.getElementsByClassName("red nobr")
+for (i = 0;i < red_font.length; i++) {
+    if (red_font[i].innerHTML == "[审核]") {
+        document.getElementsByClassName("red nobr")[i].remove()
+    }
+>>>>>>> origin/master
 }
