@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Something useful about NGA
 // @author       Icyblade
-// @grant        none
+// @run-at       document-body
 // @include      http://bbs.ngacn.cc/*
 // @include      http://bbs.nga.cn/*
 // ==/UserScript==
@@ -23,3 +23,9 @@ document.getElementsByClassName("cpinfo")[0].remove()
 document.getElementById("fast_post_c").remove()
 var count = document.getElementsByTagName("a").length
 document.getElementsByTagName("a")[count-1].remove()
+
+// 干掉审核字样
+var red = document.querySelectorAll("[title=\"待审核\"]")
+for(i = 0; i < red.length; i++){
+	red[i].parentNode.removeChild(red[i])
+}
