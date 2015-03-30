@@ -5,6 +5,7 @@
 // @description  Something useful about NGA
 // @author       Icyblade
 // @run-at       document-body
+// @grant        none
 // @include      http://bbs.ngacn.cc/*
 // @include      http://bbs.nga.cn/*
 // ==/UserScript==
