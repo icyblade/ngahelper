@@ -11,19 +11,37 @@
 // ==/UserScript==
 
 // 干掉兽人图片
-document.getElementById("mainmenu").style.margin="0px";
-document.getElementById("custombg").remove();
+var mainmenu = document.getElementById("mainmenu");
+if (mainmenu) {
+	mainmenu.style.margin="0px";
+}
+var custombg = document.getElementById("custombg");
+if (custombg) {
+	custombg.remove();
+}
 
 // 版头高度增高
-document.getElementById("toppedtopic").style.height="320px";
+var mainmenu = document.getElementById("toppedtopic");
+if (mainmenu) {
+	mainmenu.style.height="320px";
+}
 
 // 干掉底部版权信息
-document.getElementsByClassName("cpinfo")[0].remove();
+var cpinfo = document.getElementsByClassName("cpinfo");
+if (cpinfo) {
+	cpinfo[0].remove();
+}
 
 // 干掉底部快速发帖
-document.getElementById("fast_post_c").remove();
-var count = document.getElementsByTagName("a").length;
-document.getElementsByTagName("a")[count-1].remove();
+var fast_post_c = document.getElementById("fast_post_c");
+if (fast_post_c) {
+	fast_post_c.remove();
+}
+var a = document.getElementsByTagName("a")
+if (a) {
+	var count = a.length
+	a[count-1].remove();
+}
 
 // 干掉审核字样
 var red = document.querySelectorAll("[title=\"待审核\"]");
