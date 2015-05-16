@@ -48,3 +48,27 @@ var red = document.querySelectorAll("[title=\"待审核\"]");
 for(i = 0; i < red.length; i++) {
 	red[i].parentNode.removeChild(red[i]);
 }
+
+//折叠
+ubbcode.collapse.load_original = ubbcode.collapse.load
+ubbcode.collapse.load = function(content,id){
+	var title = content.previousSibling
+	title.style.display = 'block'
+	button = title.getElementsByTagName('button')[0]
+	console.log(content)
+	console.log(content.innerHTML)
+	if(content.innerHTML==""){		// click collapse button the first time
+		button.innerHTML = "-";
+		button.style.width = "17px";
+		//button.style.margin = "2px";
+		ubbcode.collapse.load_original(content,id)
+	}else{
+		if(button.innerHTML == "+"){
+			content.style.display="block";
+			button.innerHTML = "-";
+		}else{
+			content.style.display="none";
+			button.innerHTML = "+";
+		}
+	}
+}
