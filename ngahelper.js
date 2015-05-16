@@ -29,7 +29,7 @@ if (mainmenu) {
 // 干掉底部版权信息
 var cpinfo = document.getElementsByClassName("cpinfo");
 if (cpinfo) {
-	cpinfo[0].remove();
+    // TODO
 }
 
 // 干掉底部快速发帖
@@ -46,27 +46,32 @@ if (a) {
 // 干掉审核字样
 var red = document.querySelectorAll("[title=\"待审核\"]");
 for(i = 0; i < red.length; i++) {
-	red[i].parentNode.removeChild(red[i]);
+	red[i].remove();
 }
 
-//折叠
-ubbcode.collapse.load_original = ubbcode.collapse.load
+// 干掉迅游
+var a = document.getElementsByTagName("a");
+for(i = 0; i < a.length; i++) {
+    if (a[i].href == 'http://www.xunyou.com/ep/dj/') {
+        a[i].remove();
+    }
+}
+
+// 折叠
+ubbcode.collapse.load_original = ubbcode.collapse.load;
 ubbcode.collapse.load = function(content,id){
-	var title = content.previousSibling
-	title.style.display = 'block'
-	button = title.getElementsByTagName('button')[0]
-	console.log(content)
-	console.log(content.innerHTML)
-	if(content.innerHTML==""){		// click collapse button the first time
+	var title = content.previousSibling;
+	title.style.display = 'block';
+	button = title.getElementsByTagName('button')[0];
+	if (content.innerHTML=="") {		// click collapse button the first time
 		button.innerHTML = "-";
 		button.style.width = "17px";
-		//button.style.margin = "2px";
-		ubbcode.collapse.load_original(content,id)
-	}else{
-		if(button.innerHTML == "+"){
+		ubbcode.collapse.load_original(content,id);
+	} else {
+		if (button.innerHTML == "+") {
 			content.style.display="block";
 			button.innerHTML = "-";
-		}else{
+		} else {
 			content.style.display="none";
 			button.innerHTML = "+";
 		}
