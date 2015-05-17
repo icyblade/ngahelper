@@ -51,7 +51,7 @@ for(i = 0; i < red.length; i++) {
 
 // 干掉迅游
 var a = document.getElementsByTagName("a");
-for(i = 0; i < a.length; i++) {
+for (i = 0; i < a.length; i++) {
     if (a[i].href == 'http://www.xunyou.com/ep/dj/') {
         a[i].remove();
     }
@@ -75,5 +75,18 @@ ubbcode.collapse.load = function(content,id){
 			content.style.display="none";
 			button.innerHTML = "+";
 		}
+	}
+}
+
+// 备注加入超链接
+var tag = document.querySelectorAll("[style=\"background:#E0C19E;padding:0 0.5em;border-radius:0.25em;color:#2E526E\"]");
+for (i = 0; i < tag.length; i++) {
+	if (tag[i].title.substr(0,4) == 'http') {
+		var a = document.createElement("a");
+		a.href = tag[i].title;
+		a.target = '_blank';
+		a.innerHTML = tag[i].outerHTML;
+		tag[i].parentNode.insertBefore(a,tag[i]);
+		tag[i].remove();
 	}
 }
