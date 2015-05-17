@@ -4,7 +4,7 @@
 // @version      0.1
 // @description  Something useful about NGA
 // @author       Icyblade
-// @run-at       document-body
+// @run-at       document-end
 // @grant        none
 // @include      http://bbs.ngacn.cc/*
 // @include      http://bbs.nga.cn/*
@@ -29,7 +29,7 @@ if (mainmenu) {
 // 干掉底部版权信息
 var cpinfo = document.getElementsByClassName("cpinfo");
 if (cpinfo) {
-    // TODO
+    cpinfo[0].remove();
 }
 
 // 干掉底部快速发帖
