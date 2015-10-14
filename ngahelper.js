@@ -8,6 +8,7 @@
 // @grant        none
 // @include      http://bbs.ngacn.cc/*
 // @include      http://bbs.nga.cn/*
+// @include      http://club.178.com/*
 // ==/UserScript==
 
 // 干掉兽人图片
