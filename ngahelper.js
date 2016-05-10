@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NGAHelper
 // @namespace    http://github.com/icyblade/ngahelper
-// @version      0.1
+// @version      0.2
 // @description  Something useful about NGA
 // @author       Icyblade
 // @run-at       document-end
