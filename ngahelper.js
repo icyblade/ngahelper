@@ -81,7 +81,7 @@ ubbcode.collapse.load = function(content,id){
 }
 
 // 备注加入超链接
-var tag = document.querySelectorAll("[style=\"background:#E0C19E;padding:0 0.5em;border-radius:0.25em;color:#2E526E\"]");
+var tag = document.querySelectorAll("[style=\"margin-bottom:0.25em;color:#58697b\"]");
 for (i = 0; i < tag.length; i++) {
 	if (tag[i].title.substr(0,4) == 'http') {
 		var a = document.createElement("a");
@@ -91,4 +91,25 @@ for (i = 0; i < tag.length; i++) {
 		tag[i].parentNode.insertBefore(a,tag[i]);
 		tag[i].remove();
 	}
+    if (tag[i].title.substr(5,4) == 'http') {
+		var a = document.createElement("a");
+		a.href = tag[i].title.substr(4,100);
+		a.target = '_blank';
+		a.innerHTML = tag[i].outerHTML;
+		tag[i].parentNode.insertBefore(a,tag[i]);
+		tag[i].remove();
+	}
+}
+
+// 干掉名字高亮
+var inline_blocks = document.getElementsByClassName("inlineblock")
+for (i=0; i<inline_blocks.length; i++) {
+    inline_blocks[i].outerHTML = inline_blocks[i].innerHTML
+}
+
+// 展开
+var lessernukes = document.getElementsByClassName("lessernuke");
+var i;
+for (i = 0; i < lessernukes.length; i++) {
+    lessernukes[i].lastChild.style.display = "block"
 }
