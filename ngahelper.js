@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         NGAHelper
 // @namespace    http://github.com/icyblade/ngahelper
-// @version      0.2
+// @version      0.3
 // @description  Something useful about NGA
 // @author       Icyblade
 // @run-at       document-end
@@ -12,104 +12,72 @@
 // @include      http://bbs.bigccq.cn/*
 // ==/UserScript==
 
-// 干掉兽人图片
-var mainmenu = document.getElementById("mainmenu");
-if (mainmenu) {
-	mainmenu.style.margin="0px";
-}
-var custombg = document.getElementById("custombg");
-if (custombg) {
-	custombg.remove();
+function doIfExists(obj, func) {
+	if (!(obj === undefined || obj === null)) {
+		return func(obj);
+	}
 }
 
-// 版头高度增高
-var mainmenu = document.getElementById("toppedtopic");
-if (mainmenu) {
-	mainmenu.style.height="320px";
+function forEach(obj, func) {
+	var len = obj.length;
+	for (var i=0; i<len; i++) {
+		func(obj[i]);
+	}
 }
+
+// 干掉兽人图片
+doIfExists(document.getElementById("custombg"), function(obj) {
+	obj.remove();
+});
+doIfExists(document.getElementById("mainmenu"), function(obj) {
+	obj.style.margin = "0px";
+});
 
 // 干掉底部版权信息
-var cpinfo = document.getElementsByClassName("cpinfo");
-if (cpinfo) {
-    cpinfo[0].remove();
-}
+doIfExists(document.getElementsByClassName("cpinfo")[0], function(obj) {
+	obj.remove();
+});
 
 // 干掉底部快速发帖
-var fast_post_c = document.getElementById("fast_post_c");
-if (fast_post_c) {
-	fast_post_c.remove();
-}
-var a = document.getElementsByTagName("a")
-if (a) {
-	var count = a.length
-	a[count-1].remove();
-}
-
-// 干掉审核字样
-var red = document.querySelectorAll("[title=\"待审核\"]");
-for(i = 0; i < red.length; i++) {
-	red[i].remove();
-}
-
-// 干掉迅游
-var a = document.getElementsByTagName("a");
-for (i = 0; i < a.length; i++) {
-    if (a[i].href == 'http://www.xunyou.com/ep/dj/') {
-        a[i].remove();
-    }
-}
+doIfExists(document.getElementById("fast_post_c"), function(obj) {
+	obj.remove();
+});
 
 // 折叠
 ubbcode.collapse.load_original = ubbcode.collapse.load;
-ubbcode.collapse.load = function(content,id){
-	var title = content.previousSibling;
-	title.style.display = 'block';
-	button = title.getElementsByTagName('button')[0];
-	if (content.innerHTML=="") {		// click collapse button the first time
-		button.innerHTML = "-";
-		button.style.width = "17px";
-		ubbcode.collapse.load_original(content,id);
+ubbcode.collapse.load = function(o, argsId, id, r) {
+	var expandDiv = o.previousSibling;
+	var expandButton = expandDiv.firstChild;
+	var title = expandButton.nextSibling;
+	var content = o;
+
+	expandDiv.style.display = "block";
+	if (content.innerHTML === "") {  // click collapse button the first time
+		expandButton.innerHTML = "-";
+		ubbcode.collapse.load_original(o, argsId, id, r);
 	} else {
-		if (button.innerHTML == "+") {
-			content.style.display="block";
-			button.innerHTML = "-";
-		} else {
-			content.style.display="none";
-			button.innerHTML = "+";
+		if (expandButton.innerHTML == "+") {  // "un"collapse
+			content.style.display = "block";
+			expandButton.innerHTML = "-";
+		} else {  // collapse
+			content.style.display = "none";
+			expandButton.innerHTML = "+";
 		}
 	}
-}
+};
 
 // 备注加入超链接
-var tag = document.querySelectorAll("[style=\"margin-bottom:0.25em;color:#58697b\"]");
-for (i = 0; i < tag.length; i++) {
-	if (tag[i].title.substr(0,4) == 'http') {
-		var a = document.createElement("a");
-		a.href = tag[i].title;
-		a.target = '_blank';
-		a.innerHTML = tag[i].outerHTML;
-		tag[i].parentNode.insertBefore(a,tag[i]);
-		tag[i].remove();
-	}
-    if (tag[i].title.substr(5,4) == 'http') {
-		var a = document.createElement("a");
-		a.href = tag[i].title.substr(4,100);
-		a.target = '_blank';
-		a.innerHTML = tag[i].outerHTML;
-		tag[i].parentNode.insertBefore(a,tag[i]);
-		tag[i].remove();
-	}
+var tags = document.querySelectorAll("[style=\"margin-bottom:0.25em;color:#58697b\"]");
+for (i = 0; i < tags.length; i++) {
+	var a = document.createElement("a");
+	a.href = tags[i].title.replace('版主可见 ', '');
+	a.target = "_blank";
+	a.innerHTML = tags[i].outerHTML;
+	tags[i].parentNode.insertBefore(a,tags[i]);
+	tags[i].remove();
 }
 
-// 干掉名字高亮
-var inline_blocks = document.getElementsByClassName("inlineblock")
-for (i=0; i<inline_blocks.length; i++) {
-    inline_blocks[i].outerHTML = inline_blocks[i].innerHTML
-}
-
-// 展开
-var lessernukes = document.getElementsByClassName("lessernuke");
-var i;
-for (i = 0; i < lessernukes.length; i++) {
-    lessernukes[i].lastChild.style.display = "block"
-}
+// 默认展开 lessernuke
+forEach(document.getElementsByClassName("lessernuke"), function(obj) {
+	obj.lastChild.style.display = "block";
+});
