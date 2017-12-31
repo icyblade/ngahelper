@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name         NGAHelper
 // @namespace    http://github.com/icyblade/ngahelper
-// @version      0.3
+// @version      0.4
 // @description  Something useful about NGA
 // @author       Icyblade
 // @run-at       document-end
 // @grant        none
-// @include      http://bbs.ngacn.cc/*
-// @include      http://bbs.nga.cn/*
-// @include      http://club.178.com/*
-// @include      http://bbs.bigccq.cn/*
+// @include      *://bbs.ngacn.cc/*
+// @include      *://bbs.nga.cn/*
+// @include      *://club.178.com/*
+// @include      *://bbs.bigccq.cn/*
 // ==/UserScript==
 
 function doIfExists(obj, func) {
